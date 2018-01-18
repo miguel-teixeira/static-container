@@ -10,6 +10,10 @@ trait StaticContainerTrait
     {
         $binding = static::bindings()[$type] ?? null;
 
+        if (is_string($binding)) {
+            return new $binding();
+        }
+
         if (is_callable($binding)) {
             return $binding();
         }
