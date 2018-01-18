@@ -6,16 +6,16 @@ trait StaticContainerTrait
 {
     protected static $bindings = [];
 
-    public static function resolve(string $type)
+    public static function resolve(string $type, ...$args)
     {
         $binding = static::bindings()[$type] ?? null;
 
         if (is_string($binding)) {
-            return new $binding();
+            return new $binding(...$args);
         }
 
         if (is_callable($binding)) {
-            return $binding();
+            return $binding(...$args);
         }
 
         return $binding;
