@@ -6,9 +6,11 @@ trait StaticContainerTrait
 {
     protected static $bindings = [];
 
+    protected static $defaultBinding = null;
+
     public static function resolve(string $type, ...$args)
     {
-        $binding = static::bindings()[$type] ?? null;
+        $binding = static::bindings()[$type] ?? static::$defaultBinding;
 
         if (is_string($binding)) {
             return new $binding(...$args);
@@ -18,7 +20,7 @@ trait StaticContainerTrait
             return $binding(...$args);
         }
 
-        return $binding;
+        return null;
     }
 
     public static function bindings(): array
@@ -31,18 +33,28 @@ trait StaticContainerTrait
         static::$bindings = $bindings;
     }
 
-    public static function bindClass(string $key, string $class)
+    public static function bind(string $key, $binding)
     {
-        static::$bindings[$key] = $class;
-    }
-
-    public static function bindCallback(string $key, callable $callable)
-    {
-        static::$bindings[$key] = $callable;
+        static::$bindings[$key] = $binding;
     }
 
     public static function unbind(string $key)
     {
         unset(static::$bindings[$key]);
+    }
+
+    public static function defaultBinding()
+    {
+        return static::$defaultBinding;
+    }
+
+    public static function bindDefault($binding)
+    {
+        static::$defaultBinding = $binding;
+    }
+
+    public static function unbindDefault()
+    {
+        static::$defaultBinding = null;
     }
 }
