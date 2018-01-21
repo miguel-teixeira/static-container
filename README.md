@@ -25,7 +25,6 @@ $dog = Animal::make('dog');
 ```
 
 - StaticSelfFactoryTrait
-
 ```php
 Animal::bind(Dog::class);
 
@@ -39,7 +38,6 @@ $elephant = Elephant::make();
 # Recommendations
 
 - Overwrite the make method in your abstract class to make sure it always returns Animal type.
-
 ```php
 abstract class Animal {
   use StaticFactoryTrait;
@@ -53,9 +51,7 @@ abstract class Animal {
 ```
 
 - Although you can pass constructor arguments in make, or you may pass from a setter method(s) like `with`.
-
 ```php
-
 // constructor
 
 Animal::make('dog', $height, $weight);
@@ -78,9 +74,7 @@ Elephant::make($height, $weight);
 I made and use this self factory, because I try to avoid newing up classes. 
 
 - I think its ugly in some cases.
-
 ```php
-
 // ugly
 
 (new Elphant($height, $weight))->dance();
@@ -92,7 +86,6 @@ Elephant::make($height, $weight)->dance();
 ```
 
 - It becomes harder to test, but with a self factory you easily can mock. 
-
 ```php
 
 Elephant::bind($mock);
