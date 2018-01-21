@@ -12,14 +12,12 @@ Animal::bind('dog', Dog::class);
 Animal::bind('cat', Cat::class);
 
 // or
-
 Animal::setBindings([
   'dog' => Dog::class,
   'cat' => Cat::class
 ])
 
 // then
-
 $dog = Animal::make('dog');
 
 ```
@@ -31,7 +29,6 @@ Animal::bind(Dog::class);
 $dog = Animal::make();
 
 // or, instead of using the new keyword
-
 $elephant = Elephant::make();
 ```
 
@@ -53,11 +50,9 @@ abstract class Animal {
 - Although you can pass constructor arguments in make, or you may pass from a setter method(s) like `with`.
 ```php
 // constructor
-
 Animal::make('dog', $height, $weight);
 
 // or, if Animal has some setter method like `with`
-
 Animal::make('dog')->with($height, $weight);
 ```
 
@@ -75,18 +70,15 @@ I made and use this self factory, because I try to avoid newing up classes.
 - I think its ugly in some cases.
 ```php
 // ugly
-
 (new Elphant($height, $weight))->dance();
 
 // elegant
-
 Elephant::make($height, $weight)->dance();
 
 ```
 
 - It becomes harder to test, but with a self factory you easily can mock. 
 ```php
-
 Elephant::bind($mock);
 
 Elephant::make($height, $weight)->dance();
