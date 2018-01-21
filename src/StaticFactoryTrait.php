@@ -2,7 +2,7 @@
 
 namespace StaticContainer;
 
-trait StaticContainerTrait
+trait StaticFactoryTrait
 {
     protected static $bindings = [];
 
