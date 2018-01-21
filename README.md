@@ -58,7 +58,6 @@ Animal::make('dog')->with($height, $weight);
 
 - With the self factory, you may also pass constructor arguments in make.
 ```php
-
 Elephant::make($height, $weight);
 
 ```
