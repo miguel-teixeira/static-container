@@ -1,7 +1,7 @@
 {
-    "name": "miguel-teixeira/static-container",
-    "description": "Resolves classes from s",
-    "keywords": ["factory", "container", "static", "creational", "pattern"],
+    "name": "miguel-teixeira/static-factory",
+    "description": "Resolves classes from static method",
+    "keywords": ["factory", "static", "creational", "pattern"],
     "homepage": "https://github.com/miguel-teixeira",
     "authors": [
         {
@@ -11,7 +11,7 @@
     ],
     "autoload": {
        "psr-4": {
-            "StaticContainer\\": "src"
+            "StaticFactory\\": "src"
         }
     },
     "license": "MIT"

@@ -1,6 +1,6 @@
 <?php
 
-namespace StaticContainer;
+namespace StaticFactory;
 
 trait StaticSelfFactoryTrait
 {

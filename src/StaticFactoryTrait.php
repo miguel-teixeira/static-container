@@ -1,6 +1,6 @@
 <?php
 
-namespace StaticContainer;
+namespace StaticFactory;
 
 trait StaticFactoryTrait
 {
@@ -56,5 +56,10 @@ trait StaticFactoryTrait
     public static function unbindDefault()
     {
         static::$defaultBinding = null;
+    }
+
+    public static function make($type, ...$args)
+    {
+        return static::resolve($type, ...$args);
     }
 }
