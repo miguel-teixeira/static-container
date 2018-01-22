@@ -8,25 +8,6 @@ trait StaticFactoryTrait
 
     protected static $defaultBinding = null;
 
-    public static function resolve(string $type, ...$args)
-    {
-        $binding = static::bindings()[$type] ?? static::$defaultBinding;
-
-        if (is_string($binding)) {
-            return new $binding(...$args);
-        }
-
-        if (is_callable($binding)) {
-            return $binding(...$args);
-        }
-
-        if (is_object($binding)) {
-            return $binding;
-        }
-
-        return null;
-    }
-
     public static function bindings(): array
     {
         return static::$bindings;
@@ -64,6 +45,25 @@ trait StaticFactoryTrait
 
     public static function make($type, ...$args)
     {
-        return static::resolve($type, ...$args);
+        return static::resolveBinding($type, ...$args);
+    }
+
+    protected static function resolveBinding(string $type, ...$args)
+    {
+        $binding = static::bindings()[$type] ?? static::$defaultBinding;
+
+        if (is_string($binding)) {
+            return new $binding(...$args);
+        }
+
+        if (is_callable($binding)) {
+            return $binding(...$args);
+        }
+
+        if (is_object($binding)) {
+            return $binding;
+        }
+
+        return null;
     }
 }

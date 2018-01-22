@@ -16,7 +16,12 @@ trait StaticSelfFactoryTrait
         static::$binding = $binding;
     }
 
-    public static function resolve(...$args)
+    public static function make(...$args)
+    {
+        return static::resolveBinding(...$args);
+    }
+
+    protected static function resolveBinding(...$args)
     {
         $binding = static::binding();
 
@@ -33,10 +38,5 @@ trait StaticSelfFactoryTrait
         }
 
         return new static(...$args);
-    }
-
-    public static function make(...$args)
-    {
-        return static::resolve(...$args);
     }
 }
