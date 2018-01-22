@@ -20,6 +20,10 @@ trait StaticFactoryTrait
             return $binding(...$args);
         }
 
+        if (is_object($binding)) {
+            return $binding;
+        }
+
         return null;
     }
 

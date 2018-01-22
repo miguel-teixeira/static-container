@@ -28,6 +28,10 @@ trait StaticSelfFactoryTrait
             return $binding(...$args);
         }
 
+        if (is_object($binding)) {
+            return $binding;
+        }
+
         return new static(...$args);
     }
 
